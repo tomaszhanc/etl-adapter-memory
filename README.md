@@ -10,42 +10,58 @@ Following implementation are available:
 - [elasticsearch-php](https://github.com/elastic/elasticsearch-php)
 
 
-## Loader - LeagueCSVLoader
+## Loader - LoadIntoMemory
 
 ```php 
 <?php
 
-use Flow\ETL\Adapter\Elasticsearch\ElasticsearchPHPLoader;
-use Flow\ETL\Adapter\Elasticsearch\EntryIdFactory\Sha1IdFactory;
+use Flow\ETL\Loader\MemoryLoader;
+use Flow\ETL\Memory\Memory;
 use Flow\ETL\Row;
+use Flow\ETL\Row\Entry\IntegerEntry;
+use Flow\ETL\Row\Entry\StringEntry;
 use Flow\ETL\Rows;
 
-$loader = new ElasticsearchPHPLoader(
-    $this->elasticsearchContext->client(), 
-    $bulkSize = 2, 
-    self::INDEX_NAME, 
-    new Sha1IdFactory('id'), 
-    $params = ['refresh' => true]
+$rows = new Rows(
+    Row::create(new IntegerEntry('number', 1), new StringEntry('name', 'one')),
+    Row::create(new IntegerEntry('number', 2), new StringEntry('name', 'two')),
+);
+$memory = new class implements Memory {
+    /**
+     * @var array<mixed>
+     */
+    public array $data = [];
+
+    public function save(array $data) : void
+    {
+        $this->data = $data;
+    }
+};
+
+(new MemoryLoader($memory))->load($rows);
+```
+
+## Loader - CallbackLoader
+
+```php
+<?php
+
+use Flow\ETL\Loader\CallbackLoader;
+use Flow\ETL\Row;
+use Flow\ETL\Row\Entry\IntegerEntry;
+use Flow\ETL\Row\Entry\StringEntry;
+use Flow\ETL\Rows;
+
+$rows = new Rows(
+    Row::create(new IntegerEntry('number', 1), new StringEntry('name', 'one')),
+    Row::create(new IntegerEntry('number', 2), new StringEntry('name', 'two')),
 );
 
-$loader->load(new Rows(
-    Row::create(
-        new Row\Entry\IntegerEntry('id', 1),
-        new Row\Entry\StringEntry('name', 'Łukasz')
-    ),
-    Row::create(
-        new Row\Entry\IntegerEntry('id', 2),
-        new Row\Entry\StringEntry('name', 'Norbert')
-    ),
-    Row::create(
-        new Row\Entry\IntegerEntry('id', 3),
-        new Row\Entry\StringEntry('name', 'Dawid')
-    ),
-    Row::create(
-        new Row\Entry\IntegerEntry('id', 4),
-        new Row\Entry\StringEntry('name', 'Tomek')
-    ),
-));
+(new CallbackLoader(function (Rows $rows) use (&$data) : void {
+    $rows->each(function (Row $row) : void {
+        print $row->valueOf('number') . "\n";
+    });
+}))->load($rows);
 
 ```
 

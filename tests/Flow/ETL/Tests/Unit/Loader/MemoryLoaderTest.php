@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Flow\ETL\Tests\Unit\Loader;
 
-use Flow\ETL\Loader\LoadIntoMemory;
+use Flow\ETL\Loader\MemoryLoader;
 use Flow\ETL\Memory\Memory;
 use Flow\ETL\Row;
 use Flow\ETL\Row\Entry\IntegerEntry;
@@ -12,7 +12,7 @@ use Flow\ETL\Row\Entry\StringEntry;
 use Flow\ETL\Rows;
 use PHPUnit\Framework\TestCase;
 
-final class LoadIntoMemoryTest extends TestCase
+final class MemoryLoaderTest extends TestCase
 {
     public function test_loads_rows_data_into_memory() : void
     {
@@ -20,6 +20,7 @@ final class LoadIntoMemoryTest extends TestCase
             Row::create(new IntegerEntry('number', 1), new StringEntry('name', 'one')),
             Row::create(new IntegerEntry('number', 2), new StringEntry('name', 'two')),
         );
+
         $memory = new class implements Memory {
             /**
              * @var array<mixed>
@@ -32,7 +33,7 @@ final class LoadIntoMemoryTest extends TestCase
             }
         };
 
-        (new LoadIntoMemory($memory))->load($rows);
+        (new MemoryLoader($memory))->load($rows);
 
         $this->assertEquals($rows->toArray(), $memory->data);
     }

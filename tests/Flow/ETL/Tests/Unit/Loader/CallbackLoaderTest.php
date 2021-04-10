@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 final class CallbackLoaderTest extends TestCase
 {
-    public function test_loads_rows_data_into_memory() : void
+    public function test_callback_loader() : void
     {
         $rows = new Rows(
             Row::create(new IntegerEntry('number', 1), new StringEntry('name', 'one')),

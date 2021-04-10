@@ -8,7 +8,7 @@ use Flow\ETL\Loader;
 use Flow\ETL\Memory\Memory;
 use Flow\ETL\Rows;
 
-final class LoadIntoMemory implements Loader
+final class MemoryLoader implements Loader
 {
     private Memory $memory;
 
