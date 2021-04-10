@@ -10,7 +10,7 @@ Following implementation are available:
 - [elasticsearch-php](https://github.com/elastic/elasticsearch-php)
 
 
-## Loader - LoadIntoMemory
+## Loader - MemoryLoader
 
 ```php 
 <?php
