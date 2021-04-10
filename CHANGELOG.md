@@ -1,6 +1,7 @@
 ## [Unreleased] - 2021-04-10
 
 ### Added
+- [#2](https://github.com/flow-php/etl-adapter-memory/pull/2) - **ArrayMemory implementation of Memory** - [@norberttech](https://github.com/norberttech)
 - [dcdcb4](https://github.com/flow-php/etl-adapter-memory/commit/dcdcb45b076597fbadc8c257b018fba2ac75de62) - **missing memory interface** - [@norberttech](https://github.com/norberttech)
 - [90f5a8](https://github.com/flow-php/etl-adapter-memory/commit/90f5a824badeb420e0b8a5ed40cb47738d964c5d) - **github workflow** - [@norberttech](https://github.com/norberttech)
 
