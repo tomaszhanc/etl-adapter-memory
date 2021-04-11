@@ -30,7 +30,7 @@ final class ArrayMemory implements Memory
     {
         $this->assertMemoryStructure($data);
 
-        $this->data = $data;
+        $this->data = \array_merge($this->data, $data);
     }
 
     public function dump() : array

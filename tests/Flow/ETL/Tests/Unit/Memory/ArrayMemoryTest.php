@@ -33,4 +33,16 @@ final class ArrayMemoryTest extends TestCase
         $memory = new ArrayMemory();
         $memory->save([1, 2, 3]);
     }
+
+    public function test_saving_multiple_entries_into_memory() : void
+    {
+        $memory = new ArrayMemory();
+        $memory->save([['id' => 1], ['id' => 2]]);
+        $memory->save([['id' => 3], ['id' => 4]]);
+
+        $this->assertSame(
+            [['id' => 1], ['id' => 2], ['id' => 3], ['id' => 4]],
+            $memory->dump()
+        );
+    }
 }
