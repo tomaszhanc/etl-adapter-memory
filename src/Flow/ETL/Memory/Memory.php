@@ -7,17 +7,21 @@ namespace Flow\ETL\Memory;
 interface Memory
 {
     /**
-     * @param array<mixed> $data
+     * @param array<array<mixed>> $data
      */
     public function save(array $data) : void;
 
     /**
+     * @psalm-mutation-free
+     *
      * @return array<mixed>
      */
     public function dump() : array;
 
     /**
-     * @param callable(mixed) : mixed $callback
+     * @param callable(array<mixed>) : mixed $callback
+     *
+     * @return array<mixed>
      */
-    public function map(callable $callback) : self;
+    public function map(callable $callback) : array;
 }
