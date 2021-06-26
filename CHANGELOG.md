@@ -1,4 +1,4 @@
-## [Unreleased] - 2021-05-13
+## [Unreleased] - 2021-06-26
 
 ### Added
 - [#3](https://github.com/flow-php/etl-adapter-memory/pull/3) - **MemoryExtractor** - [@norberttech](https://github.com/norberttech)
