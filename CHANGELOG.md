@@ -1,6 +1,7 @@
-## [Unreleased] - 2021-10-06
+## [Unreleased] - 2021-10-26
 
 ### Added
+- [#50](https://github.com/flow-php/etl-adapter-memory/pull/50) - **Workflow for aut-merging dependabot PRs** - [@tomaszhanc](https://github.com/tomaszhanc)
 - [#3](https://github.com/flow-php/etl-adapter-memory/pull/3) - **MemoryExtractor** - [@norberttech](https://github.com/norberttech)
 - [#2](https://github.com/flow-php/etl-adapter-memory/pull/2) - **ArrayMemory implementation of Memory** - [@norberttech](https://github.com/norberttech)
 - [dcdcb4](https://github.com/flow-php/etl-adapter-memory/commit/dcdcb45b076597fbadc8c257b018fba2ac75de62) - **missing memory interface** - [@norberttech](https://github.com/norberttech)
